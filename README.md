@@ -6,7 +6,7 @@
 
 #### Project : Calculator
 
-<a href="https://odin-etch-and-sketch.vercel.app/" target="_blank">Live Preview</a> with Vercel.
+<a href="https://lolikana.github.io/odin-calculator/" target="_blank">Live Preview</a> with Github.
 
 Second javascript project: HTML, CSS, JS
 
