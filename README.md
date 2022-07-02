@@ -11,10 +11,12 @@
 Second javascript project: HTML, CSS, JS
 
 Memo :
-- [ ] none
+- [ ] change text bottom to top
+- [ ] when click an operator btn should start calculate
+- [ ] then, if another number is entered, display realtime result in text bottom 
 
 Extra :
-- [ ] add function to draw on mobile with <code>touchmove</code> (must prevent the dragging)
+- [ ] none
 
 Credits :
 
