@@ -8,7 +8,7 @@ const selectClearBtn = document.getElementsByClassName('control__clear');
 const selectDeleteBtn = document.getElementsByClassName('control__delete');
 
 let textTopArray = [];
-let textBottomArray = [0];
+let textBottomArray = [];
 displayBottom.textContent = textBottomArray;
 
 function displayText() {
@@ -20,9 +20,15 @@ for (let i = 0; i < selectNumberBtn.length; i++) {
     'click',
     (btnValue = () => {
       const value = selectNumberBtn[i].innerHTML;
-      textBottomArray.push(value);
-      checkDotBtn();
-      displayText();
+      if (textBottomArray[0] === 0 && value !== '.' && textBottomArray.length === 1) {
+        textBottomArray.splice(0, 1, value);
+        checkDotBtn();
+        displayText();
+      } else {
+        textBottomArray.push(value);
+        checkDotBtn();
+        displayText();
+      }
     })
   );
 }
