@@ -8,7 +8,8 @@ const selectClearBtn = document.getElementsByClassName('control__clear');
 const selectDeleteBtn = document.getElementsByClassName('control__delete');
 
 let textTopArray = [];
-let textBottomArray = [];
+let textBottomArray = [0];
+
 displayBottom.textContent = textBottomArray;
 
 function displayText() {
@@ -44,7 +45,7 @@ selectNegativeBtn[0].addEventListener('click', () => {
 
 function clearDisplay() {
   textBottomArray = [0];
-  displayBottom.textContent = 0;
+  displayText();
   checkDotBtn();
 }
 selectClearBtn[0].addEventListener('click', clearDisplay);
@@ -54,7 +55,8 @@ function deleteLastNumber() {
   displayText();
   checkDotBtn();
   if (textBottomArray.length === 0) {
-    displayBottom.textContent = '0';
+    textBottomArray = [0];
+    displayText();
   }
 }
 selectDeleteBtn[0].addEventListener('click', deleteLastNumber);
