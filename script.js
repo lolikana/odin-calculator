@@ -73,3 +73,33 @@ function checkDotBtn() {
     selectDotBtn.removeAttribute('disabled');
   }
 }
+
+// const operatorList = ['/', 'x', '-', '+'];
+// function isLastOperator(param) {
+//   const result =
+//     param === operatorList.filter(item => item === textTopArray[textTopArray.length - 1]);
+//   console.log(result);
+// }
+
+// for (let i = 0; i < selectOperatorBtn.length; i++) {
+//   selectOperatorBtn[i].addEventListener(
+//     'click',
+//     (btnValue = () => {
+//       const value = selectOperatorBtn[i].innerHTML;
+//       if (textTopArray[0] === '0') {
+//         return;
+//       } else if (value !== '=') {
+//         if (isLastOperator(value)) {
+//           textTopArray.pop();
+//           textTopArray.push(value);
+//           displayText();
+//         } else {
+//           textTopArray.push(value);
+//           displayText();
+//           console.log(textTopArray);
+//         }
+//         console.log();
+//       }
+//     })
+//   );
+// }
