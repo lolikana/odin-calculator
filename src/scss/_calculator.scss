@@ -26,9 +26,12 @@
     #display {
       width: 100%;
       &-top {
-        font-size: 1.5rem;
+        height: 40%;
+        padding-top: 1rem;
+        font-size: 1.6rem;
       }
       &-bottom {
+        height: 100%;
         font-size: 2.2rem;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
