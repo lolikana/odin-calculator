@@ -26,12 +26,19 @@ for (let i = 0; i < selectNumberBtn.length; i++) {
         textTopArray.splice(0, 1, value);
         checkDotBtn();
         displayText();
+      } else if (
+        textTopArray.slice(0, 2).join('') === '-0' &&
+        textTopArray.slice(0, 3).join('') !== '-0.' &&
+        value !== '.'
+      ) {
+        textTopArray.splice(1, 1, value);
+        checkDotBtn();
+        displayText();
       } else {
         textTopArray.push(value);
         checkDotBtn();
         displayText();
       }
-      console.log(textTopArray);
     })
   );
 }
