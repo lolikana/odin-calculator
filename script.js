@@ -73,11 +73,11 @@ for (let i = 0; i < selectNumberBtn.length; i++) {
 selectNegativeBtn[0].addEventListener('click', () => {
   if (textTopArray[0] !== '-') {
     textTopArray.unshift('-');
+    checkAndDisplay();
   } else if (textTopArray[0] === '-') {
     textTopArray.shift();
+    checkAndDisplay();
   }
-  console.log(textTopArray);
-  return displayText();
 });
 
 function clearDisplay() {
