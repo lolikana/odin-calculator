@@ -4,12 +4,9 @@
 }
 
 html {
-  -webkit-text-size-adjust: none;
-  /*─ Debug font size on iphone when landscape orientation ─*/
-  -webkit-font-smoothing: subpixel-antialiased;
-  /*─ Debug safari font weight when fixed element on the page ─*/
-  -webkit-font-smoothing: antialiased;
-  /*─ idem : Debug safari font weight when fixed element on the page ─*/
+  -webkit-text-size-adjust: none; /*─ Debug font size on iphone when landscape orientation ─*/
+  -webkit-font-smoothing: subpixel-antialiased; /*─ Debug safari font weight when fixed element on the page ─*/
+  -webkit-font-smoothing: antialiased; /*─ idem : Debug safari font weight when fixed element on the page ─*/
 }
 
 html, body, nav, header, footer, div, span,
@@ -54,13 +51,11 @@ button:hover {
 }
 
 input::-ms-clear {
-  display: none;
-  /*─ IE11 → remove cross to close ─*/
+  display: none; /*─ IE11 → remove cross to close ─*/
 }
 
 textarea {
-  overflow: auto;
-  /*─ Hide scroll bar on IE ─*/
+  overflow: auto; /*─ Hide scroll bar on IE ─*/
 }
 
 a {
@@ -111,30 +106,28 @@ body {
 }
 .calculator__display {
   width: 100%;
-  height: 30%;
+  min-height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-end;
   padding: 1rem 2rem;
   margin-bottom: 1rem;
   background-color: #689689;
   border-radius: 8px;
   box-shadow: inset 0px 0px 5px 3px rgba(0, 0, 0, 0.4);
 }
-.calculator__display #display {
-  width: 100%;
-}
 .calculator__display #display-top {
+  width: 100%;
   height: 40%;
-  padding-top: 1rem;
   font-size: 1.6rem;
+  overflow: hidden;
+  text-align: end;
 }
 .calculator__display #display-bottom {
-  height: 100%;
+  width: 100%;
+  height: 60%;
+  text-align: end;
   font-size: 2.2rem;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
 }
 
 .control {

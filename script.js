@@ -7,9 +7,10 @@ const selectNegativeBtn = document.getElementsByClassName('control__negative');
 const selectClearBtn = document.getElementsByClassName('control__clear');
 const selectDeleteBtn = document.getElementsByClassName('control__delete');
 const selectOperatorBtn = document.getElementsByClassName('operator');
+const selectEqualBtn = document.getElementById('equal');
 
 let textTopArray = [0];
-let textBottomArray = [];
+let textBottomArray;
 
 displayTop.textContent = textTopArray.join('');
 
@@ -18,20 +19,22 @@ function displayText() {
 }
 
 function displayTotal() {
-  console.log(textTopArray[textTopArray.length - 1]);
-  return (displaybottom.textContent = eval(textTopArray.join('')));
+  const totalArray = eval(textTopArray.join(''));
+  displaybottom.textContent = totalArray;
+  textBottomArray = totalArray;
 }
 
 function checkDotBtn() {
   if (textTopArray.includes('.')) {
     selectDotBtn.classList.add('disabled');
     selectDotBtn.setAttribute('disabled', '');
-  } 
+  }
+
   // else if (operatorList.filter(list => (list === textTopArray[textTopArray.length - 1]))) {
   //   selectDotBtn.classList.add('disabled');
   //   selectDotBtn.setAttribute('disabled', '');
   // }
-   else {
+  else {
     selectDotBtn.classList.remove('disabled');
     selectDotBtn.removeAttribute('disabled');
   }
@@ -93,32 +96,39 @@ function deleteLastNumber() {
 }
 selectDeleteBtn[0].addEventListener('click', deleteLastNumber);
 
-const operatorList = ['/', 'x', '-', '+'];
-function isLastOperator(param) {
+const operatorList = ['/', '*', '-', '+'];
+
+function isLastOperator() {
   const result =
-    param ===
+    textTopArray[textTopArray.length - 1] ===
     operatorList
       .filter(item => item === textTopArray[textTopArray.length - 1])
       .toString();
 
-  return result ? true : false;
+  return result;
 }
 
 for (let i = 0; i < selectOperatorBtn.length; i++) {
   selectOperatorBtn[i].addEventListener('click', () => {
     const value = selectOperatorBtn[i].innerHTML;
+    console.log('value is ' + value + ' and type of ' + typeof value);
     if (textTopArray[0] === '0') {
       return;
-    } else if (value !== '=') {
+    } else {
       if (isLastOperator(value)) {
         textTopArray.pop();
-        textTopArray.push(value);
+        textTopArray.push(' ' + value + ' ');
         displayText();
       } else {
-        textTopArray.push(value);
+        textTopArray.push(' ' + value + ' ');
         displayText();
-        console.log(textTopArray);
       }
     }
   });
 }
+
+selectEqualBtn.addEventListener('click', () => {
+  textTopArray = [];
+  textTopArray.push(textBottomArray);
+  displayText();
+});
