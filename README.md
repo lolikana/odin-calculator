@@ -11,9 +11,11 @@
 Second javascript project: HTML, CSS, JS
 
 Memo :
-- [ ] change text bottom to top
-- [ ] when click an operator btn should start calculate
-- [ ] then, if another number is entered, display realtime result in text bottom 
+- [x] change text bottom to top
+- [x] when click an operator btn should start calculate
+- [x] then, if another number is entered, display realtime result in text bottom 
+- [ ] find a solution to for the decimal
+- [ ] after clicked to equal and push the number to the top, if next button click is a number start from this number, if it is an operator continue calculation
 
 Extra :
 - [ ] none
