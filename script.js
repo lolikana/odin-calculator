@@ -11,36 +11,60 @@ const selectOperatorBtn = document.getElementsByClassName('operator');
 let textTopArray = [0];
 let textBottomArray = [];
 
-displayTop.textContent = textTopArray;
+displayTop.textContent = textTopArray.join('');
 
 function displayText() {
-  displayTop.textContent = textTopArray.join('');
+  return (displayTop.textContent = textTopArray.join(''));
+}
+
+function displayTotal() {
+  console.log(textTopArray[textTopArray.length - 1]);
+  return (displaybottom.textContent = eval(textTopArray.join('')));
+}
+
+function checkDotBtn() {
+  if (textTopArray.includes('.')) {
+    selectDotBtn.classList.add('disabled');
+    selectDotBtn.setAttribute('disabled', '');
+  } 
+  // else if (operatorList.filter(list => (list === textTopArray[textTopArray.length - 1]))) {
+  //   selectDotBtn.classList.add('disabled');
+  //   selectDotBtn.setAttribute('disabled', '');
+  // }
+   else {
+    selectDotBtn.classList.remove('disabled');
+    selectDotBtn.removeAttribute('disabled');
+  }
+}
+
+function checkAndDisplay() {
+  displayText();
+  displayTotal();
+  checkDotBtn();
 }
 
 for (let i = 0; i < selectNumberBtn.length; i++) {
-  selectNumberBtn[i].addEventListener(
-    'click',
-    (btnValue = () => {
-      const value = selectNumberBtn[i].innerHTML;
-      if (textTopArray[0] === 0 && value !== '.' && textTopArray.length === 1) {
-        textTopArray.splice(0, 1, value);
-        checkDotBtn();
-        displayText();
-      } else if (
-        textTopArray.slice(0, 2).join('') === '-0' &&
-        textTopArray.slice(0, 3).join('') !== '-0.' &&
-        value !== '.'
-      ) {
-        textTopArray.splice(1, 1, value);
-        checkDotBtn();
-        displayText();
-      } else {
-        textTopArray.push(value);
-        checkDotBtn();
-        displayText();
-      }
-    })
-  );
+  selectNumberBtn[i].addEventListener('click', () => {
+    const value = selectNumberBtn[i].innerHTML;
+    const valueNum = Number(selectNumberBtn[i].innerHTML);
+    if (textTopArray[0] === 0 && value !== '.' && textTopArray.length === 1) {
+      textTopArray.splice(0, 1, valueNum);
+      checkAndDisplay();
+    } else if (
+      textTopArray.slice(0, 2).join('') === '-0' &&
+      textTopArray.slice(0, 3).join('') !== '-0.' &&
+      value !== '.'
+    ) {
+      textTopArray.splice(1, 1, valueNum);
+      checkAndDisplay();
+    } else if (value === '.') {
+      textTopArray.push(value);
+      checkAndDisplay();
+    } else {
+      textTopArray.push(valueNum);
+      checkAndDisplay();
+    }
+  });
 }
 
 selectNegativeBtn[0].addEventListener('click', () => {
@@ -55,15 +79,13 @@ selectNegativeBtn[0].addEventListener('click', () => {
 
 function clearDisplay() {
   textTopArray = [0];
-  displayText();
-  checkDotBtn();
+  checkAndDisplay();
 }
 selectClearBtn[0].addEventListener('click', clearDisplay);
 
 function deleteLastNumber() {
   textTopArray.pop();
-  displayText();
-  checkDotBtn();
+  checkAndDisplay();
   if (textTopArray.length === 0) {
     textTopArray = [0];
     displayText();
@@ -71,42 +93,32 @@ function deleteLastNumber() {
 }
 selectDeleteBtn[0].addEventListener('click', deleteLastNumber);
 
-function checkDotBtn() {
-  if (textTopArray.includes('.')) {
-    selectDotBtn.classList.add('disabled');
-    selectDotBtn.setAttribute('disabled', '');
-  } else {
-    selectDotBtn.classList.remove('disabled');
-    selectDotBtn.removeAttribute('disabled');
-  }
+const operatorList = ['/', 'x', '-', '+'];
+function isLastOperator(param) {
+  const result =
+    param ===
+    operatorList
+      .filter(item => item === textTopArray[textTopArray.length - 1])
+      .toString();
+
+  return result ? true : false;
 }
 
-// const operatorList = ['/', 'x', '-', '+'];
-// function isLastOperator(param) {
-//   const result =
-//     param === operatorList.filter(item => item === textTopArray[textTopArray.length - 1]);
-//   console.log(result);
-// }
-
-// for (let i = 0; i < selectOperatorBtn.length; i++) {
-//   selectOperatorBtn[i].addEventListener(
-//     'click',
-//     (btnValue = () => {
-//       const value = selectOperatorBtn[i].innerHTML;
-//       if (textTopArray[0] === '0') {
-//         return;
-//       } else if (value !== '=') {
-//         if (isLastOperator(value)) {
-//           textTopArray.pop();
-//           textTopArray.push(value);
-//           displayText();
-//         } else {
-//           textTopArray.push(value);
-//           displayText();
-//           console.log(textTopArray);
-//         }
-//         console.log();
-//       }
-//     })
-//   );
-// }
+for (let i = 0; i < selectOperatorBtn.length; i++) {
+  selectOperatorBtn[i].addEventListener('click', () => {
+    const value = selectOperatorBtn[i].innerHTML;
+    if (textTopArray[0] === '0') {
+      return;
+    } else if (value !== '=') {
+      if (isLastOperator(value)) {
+        textTopArray.pop();
+        textTopArray.push(value);
+        displayText();
+      } else {
+        textTopArray.push(value);
+        displayText();
+        console.log(textTopArray);
+      }
+    }
+  });
+}
